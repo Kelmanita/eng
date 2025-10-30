@@ -6,19 +6,41 @@
   <title>Видео и График</title>
   <style>
     html, body { height: 100%; margin: 0; background: #000; }
+
     .container {
       display: flex;
       flex-direction: column;
-      height: 100vh;           /* на весь экран */
+      height: 100vh;             /* весь экран */
     }
-    .video, .table {
-      flex: 1;                 /* по 50% высоты */
+
+    /* верхняя половина — видео */
+    .video {
+      flex: 1;                    /* 50% высоты */
       width: 100%;
       border: 0;
-      min-height: 0;           /* важно для flex, чтобы iframe не выпирал */
+      min-height: 0;
     }
+
+    /* нижняя половина — обёртка для выравнивания по центру */
+    .chart-wrap {
+      flex: 1;                    /* 50% высоты */
+      display: flex;
+      align-items: center;        /* выравнивание по вертикали (центр) */
+      justify-content: center;    /* выравнивание по горизонтали (центр) */
+      background: #fff;           /* фон под график, можно убрать */
+      min-height: 0;
+      overflow: hidden;           /* без полос прокрутки вокруг */
+    }
+
+    /* сам график */
+    .chart {
+      border: 0;
+      width: min(1195px, 100%);   /* не шире исходного и контейнера */
+      height: min(520px, 100%);   /* подбери под свой график */
+    }
+
     @media (max-width: 768px) {
-      .video, .table { height: 50vh; }
+      .video, .chart-wrap { height: 50vh; }
     }
   </style>
 </head>
@@ -33,12 +55,14 @@
       title="Bloomberg Live">
     </iframe>
 
-    <!-- ГРАФИК ИЗ GOOGLE SHEETS ВНИЗУ (ТОЛЬКО URL!) -->
-    <iframe
-      class="table"
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubchart?oid=1662241166&format=interactive"
-      title="График из таблицы">
-    </iframe>
+    <!-- ГРАФИК ПО ЦЕНТРУ ВНИЖНЕЙ ПОЛОВИНЕ -->
+    <div class="chart-wrap">
+      <iframe
+        class="chart"
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubchart?oid=1662241166&format=interactive"
+        title="График из таблицы">
+      </iframe>
+    </div>
   </div>
 </body>
 </html>
