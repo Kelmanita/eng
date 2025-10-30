@@ -3,32 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Видео и Таблица</title>
+  <title>Видео и График</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-    }
-
+    html, body { height: 100%; margin: 0; background: #000; }
     .container {
       display: flex;
       flex-direction: column;
-      height: 100vh; /* Высота экрана */
+      height: 100vh;           /* на весь экран */
     }
-
-    .video,
-    .table {
-      flex: 1; /* Каждая половина по 50% */
+    .video, .table {
+      flex: 1;                 /* по 50% высоты */
       width: 100%;
-      border: none;
+      border: 0;
+      min-height: 0;           /* важно для flex, чтобы iframe не выпирал */
     }
-
-    /* Мобильная адаптация */
     @media (max-width: 768px) {
-      .video, .table {
-        height: 50vh;
-      }
+      .video, .table { height: 50vh; }
     }
   </style>
 </head>
@@ -38,17 +28,17 @@
     <iframe
       class="video"
       src="https://www.youtube.com/embed/iEpJwprxDdk?autoplay=1&mute=1"
-      allow="autoplay; encrypted-media; fullscreen"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
       title="Bloomberg Live">
     </iframe>
 
-    <!-- ТАБЛИЦА ВНИЗУ -->
+    <!-- ГРАФИК ИЗ GOOGLE SHEETS ВНИЗУ (ТОЛЬКО URL!) -->
     <iframe
       class="table"
-      src="<iframe width="1195" height="390" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubchart?oid=1662241166&amp;format=interactive"></iframe>" 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubchart?oid=1662241166&format=interactive"
+      title="График из таблицы">
     </iframe>
   </div>
 </body>
 </html>
-
-
