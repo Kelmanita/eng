@@ -1,85 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Killers</title>
-    <style>
-        /* CSS стили */
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch; /* Выравнивание высоты элементов по вертикали */
-            height: 100vh; /* Высота контейнера на весь экран */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Видео и Таблица</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+    }
 
-        .left-half {
-            width: 30%; /* 30% ширины контейнера */
-            height: 100%; /* 100% высоты контейнера */
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Высота экрана */
+    }
 
-        .right-half {
-            width: 70%; /* 70% ширины контейнера */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end; /* Изменено на flex-end */
-            height: 100%; /* 100% высоты контейнера */
-        }
+    .video,
+    .table {
+      flex: 1; /* Каждая половина по 50% */
+      width: 100%;
+      border: none;
+    }
 
-        .video {
-            width: 100%; /* Растягиваем видео на всю ширину правой половины контейнера */
-            height: 70%; /* 70% высоты правой половины контейнера */
-        }
-
-        .graph {
-            width: 100%; /* Растягиваем график на всю ширину правой половины контейнера */
-            height: 30%; /* 30% высоты правой половины контейнера */
-        }
-
-        /* Добавлено для установки высоты таблицы в 100% */
-        .left-half iframe {
-            height: 100%;
-        }
-    </style>
+    /* Мобильная адаптация */
+    @media (max-width: 768px) {
+      .video, .table {
+        height: 50vh;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Левая половина -->
-        <div class="left-half">
-            <!-- Таблица -->
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubhtml?gid=359874385&single=true" width="100%" height="100%" frameborder="0" scrolling="no" title="Google Spreadsheet"></iframe>
-        </div>
+  <div class="container">
+    <!-- ВИДЕО ВВЕРХУ -->
+    <iframe
+      class="video"
+      src="https://www.youtube.com/embed/iEpJwprxDdk?autoplay=1&mute=1"
+      allow="autoplay; encrypted-media; fullscreen"
+      title="Bloomberg Live">
+    </iframe>
 
-        <!-- Правая половина -->
-        <div class="right-half">
-            <!-- Прямая трансляция -->
-            <iframe class="video" src="https://www.youtube.com/embed/iEpJwprxDdk?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; encrypted-media" title="YouTube Live"></iframe>
-
-            <!-- График -->
-            <div class="graph">
-                <div id="tradingview_bitcoin" class="tradingview-widget-container"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    new TradingView.widget(
-                    {
-                        "width": "100%", /* Изменено на 100% */
-                        "height": "100%", /* Изменено на 100% */
-                        "symbol": "BITSTAMP:BTCUSD", // Символ для биткоина
-                        "interval": "D",
-                        "timezone": "Etc/UTC",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "allow_symbol_change": true,
-                        "container_id": "tradingview_bitcoin"
-                    }
-                    );
-                </script>
-            </div>
-        </div>
-    </div>
+    <!-- ТАБЛИЦА ВНИЗУ -->
+    <iframe
+      class="table"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubhtml?gid=359874385&single=true"
+      title="Google Spreadsheet">
+    </iframe>
+  </div>
 </body>
 </html>
