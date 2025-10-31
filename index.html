@@ -10,38 +10,41 @@
     .container {
       display: flex;
       flex-direction: column;
-      height: 100vh;          /* весь экран */
+      height: 100vh;
       min-height: 100vh;
     }
 
-    /* верхняя половина — видео */
+    /* верх: видео заполняет свою половину */
     .video {
-      flex: 1;                /* 50% */
+      flex: 1;
       width: 100%;
       height: 100%;
       border: 0;
       min-height: 0;
     }
 
-    /* нижняя половина — график, растянутый на всю высоту своей половины */
+    /* низ: центрируем содержимое */
     .chart-wrap {
-      flex: 1;                /* 50% */
+      flex: 1;
       display: flex;
-      align-items: stretch;   /* растянуть по высоте */
-      justify-content: center;
-      background: #fff;       /* можно убрать, если не нужен белый фон */
+      align-items: center;        /* CHANGED: по вертикали — центр */
+      justify-content: center;    /* CHANGED: по горизонтали — центр */
+      background: #fff;           /* можно убрать */
       min-height: 0;
       overflow: hidden;
+      padding: 8px;               /* небольшой отступ, по желанию */
     }
+
+    /* сам график: адекватные пределы, чтобы не “прилипал” к краям */
     .chart {
       border: 0;
-      width: 100%;            /* на всю ширину */
-      height: 100%;           /* и на всю высоту половины */
-      min-height: 0;
+      width: min(1200px, 95%);    /* CHANGED: не шире контейнера и не больше 1200 */
+      height: min(560px, 95%);    /* CHANGED: не выше контейнера и не больше 560 */
     }
 
     @media (max-width: 768px) {
       .video, .chart-wrap { height: 50vh; }
+      .chart { width: 98%; height: 98%; }  /* на телефоне можно чуть растянуть */
     }
   </style>
 </head>
@@ -56,7 +59,7 @@
       title="Bloomberg Live">
     </iframe>
 
-    <!-- ГРАФИК ВНИЗУ (растянут по высоте и ширине своей половины) -->
+    <!-- ГРАФИК ПО ЦЕНТРУ ВНИЖНЕЙ ПОЛОВИНЕ -->
     <div class="chart-wrap">
       <iframe
         class="chart"
