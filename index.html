@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bloomberg + Google Chart + Table</title>
+  <title>Bloomberg + Google Sheet Chart</title>
   <style>
     html, body {
       height: 100%;
@@ -18,59 +18,41 @@
       height: 100vh;
     }
 
-    /* Верхняя половина: видео */
+    /* Видеопоток в верхней половине */
     .video {
       flex: 1;
       width: 100%;
       border: 0;
     }
 
-    /* Нижняя половина: диаграмма и таблица */
+    /* Нижняя половина — вставка Google Sheets */
     .chart-wrap {
       flex: 1;
+      background: #fff;
       display: flex;
       justify-content: center;
-      align-items: stretch;
-      background: #fff;
+      align-items: center;
       padding: 8px;
-      gap: 8px;
       box-sizing: border-box;
     }
 
-    /* Левая часть — диаграмма */
+    /* Сам Google Sheet (с диаграммой и таблицей) */
     .chart {
-      flex: 2;
+      width: 95%;
+      height: 95%;
       border: 0;
-      height: 100%;
       background: #fff;
     }
 
-    /* Правая часть — таблица */
-    .table {
-      flex: 1;
-      border: 0;
-      height: 100%;
-      background: #f8f8f8;
-      transform: scale(1.02);   /* немного увеличим таблицу */
-      transform-origin: top left;
-    }
-
-    /* На мобильных — вертикальное расположение */
     @media (max-width: 768px) {
-      .chart-wrap {
-        flex-direction: column;
-      }
-      .chart, .table {
-        width: 100%;
-        height: 50%;
-      }
+      .video, .chart-wrap { height: 50vh; }
+      .chart { width: 100%; height: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-
-    <!-- ВИДЕО ВВЕРХУ -->
+    <!-- ВИДЕО -->
     <iframe
       class="video"
       src="https://www.youtube.com/embed/iEpJwprxDdk?autoplay=1&mute=1"
@@ -79,23 +61,13 @@
       title="Bloomberg Live">
     </iframe>
 
-    <!-- НИЖНЯЯ ПОЛОВИНА: диаграмма + таблица -->
+    <!-- ВСТРАИВАЕМ ВЕСЬ КУСОК GOOGLE ТАБЛИЦЫ -->
     <div class="chart-wrap">
-
-      <!-- 📊 ДИАГРАММА (замени ссылку на свою опубликованную диаграмму из Google Sheets) -->
       <iframe
         class="chart"
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubchart?oid=1662241166&format=interactive"
-        title="Диаграмма">
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubhtml"
+        title="Диаграмма и таблица">
       </iframe>
-
-      <!-- 📋 ТАБЛИЦА (замени ссылку на опубликованный диапазон таблицы, см. шаги ниже) -->
-      <iframe
-        class="table"
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9g6_S-GrBLE3-sgiDv_GmTony1aw-RLicAAgBm1uB_TMJJs9Y5djjv8u67Pu82kmKDq4aHlcMzsso/pubhtml?gid=0&single=true&range=H2:J8&widget=false&headers=false"
-        title="Team Ratings">
-      </iframe>
-
     </div>
   </div>
 </body>
